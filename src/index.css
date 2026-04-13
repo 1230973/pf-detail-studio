@@ -1,0 +1,92 @@
+@import url('https://fonts.googleapis.com/css2?family=Montserrat:wght@300;400;500;600;700;800&family=Poppins:wght@300;400;500;600;700;800;900&display=swap');
+@import "tailwindcss";
+
+@theme {
+  --font-sans: "Montserrat", ui-sans-serif, system-ui, sans-serif;
+  --font-display: "Poppins", sans-serif;
+
+  --color-matte-black: #0A0A0A;
+  --color-gold-brushed: #D4AF37;
+  --color-gold-light: #F9E27D;
+  --color-silver-polished: #E5E4E2;
+}
+
+@layer base {
+  html {
+    scroll-behavior: smooth;
+  }
+  
+  body {
+    @apply bg-matte-black text-white font-sans antialiased;
+  }
+
+  /* Custom Scrollbar for Luxury Feel */
+  ::-webkit-scrollbar {
+    width: 10px;
+  }
+  ::-webkit-scrollbar-track {
+    background: #0A0A0A;
+  }
+  ::-webkit-scrollbar-thumb {
+    background: #333;
+    border-radius: 5px;
+    border: 2px solid #0A0A0A;
+  }
+  ::-webkit-scrollbar-thumb:hover {
+    background: #D4AF37;
+  }
+}
+
+@layer utilities {
+  .text-gold-gradient {
+    background: linear-gradient(to right, #D4AF37, #F9E27D, #D4AF37);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-size: 200% auto;
+    animation: shimmerText 8s linear infinite;
+  }
+
+  .bg-gold-gradient {
+    background: linear-gradient(135deg, #D4AF37 0%, #F9E27D 50%, #D4AF37 100%);
+    background-size: 200% auto;
+    transition: background-position 0.5s ease;
+  }
+
+  .bg-gold-gradient:hover {
+    background-position: right center;
+  }
+
+  .shine-effect {
+    position: relative;
+    overflow: hidden;
+  }
+
+  .shine-effect::after {
+    content: '';
+    position: absolute;
+    top: -50%;
+    left: -50%;
+    width: 200%;
+    height: 200%;
+    background: linear-gradient(
+      to bottom right,
+      rgba(255, 255, 255, 0) 0%,
+      rgba(255, 255, 255, 0) 40%,
+      rgba(255, 255, 255, 0.3) 50%,
+      rgba(255, 255, 255, 0) 60%,
+      rgba(255, 255, 255, 0) 100%
+    );
+    transform: rotate(45deg);
+    animation: shine 4s infinite cubic-bezier(0.4, 0, 0.2, 1);
+  }
+
+  @keyframes shine {
+    0%, 10% { transform: translateX(-100%) translateY(-100%) rotate(45deg); }
+    90%, 100% { transform: translateX(100%) translateY(100%) rotate(45deg); }
+  }
+
+  @keyframes shimmerText {
+    0% { background-position: 0% center; }
+    100% { background-position: 200% center; }
+  }
+}
